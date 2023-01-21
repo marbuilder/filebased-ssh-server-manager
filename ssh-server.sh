@@ -3,7 +3,7 @@ set -e
 #files=(server.list example.list) # whitespace seperate list
 files+=()
 files+=($1)
-sshUserName="techcreater"
+sshUserName=""
 sshArgs=""
 
 function choose_server() {
@@ -18,6 +18,7 @@ function choose_server() {
         echo "Selected server: $server"
 
         ssh $sshUserName@$server $sshArgs
+        
 #        exit 1 # exit after last ssh-session
         choose_server
     done
