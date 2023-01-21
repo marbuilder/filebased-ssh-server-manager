@@ -1,3 +1,4 @@
+#!/bin/bash
 PS3="Enter a number: "
 set -e
 
