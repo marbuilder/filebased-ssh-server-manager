@@ -7,7 +7,7 @@ a bash script to read servers from files and connect to them with ssh
 chmod +x ssh-server-sh
 ```
 
-add files to the variable "files" in the script and run from command line
+add files to the variable "files", set ssh username in the script and run from command line
 ```bash
 ./ssh-server.sh
 ```
