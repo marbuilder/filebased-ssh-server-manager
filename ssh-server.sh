@@ -7,12 +7,12 @@ sshUserName=""
 sshArgs=""
 
 function choose_server() {
-    select server in ${allServer[@]} exit
+    clear
+    select server in ${allServer[@]} back
     do  
-        if [ $server == "exit" ] 
+        if [ $server == "back" ] 
         then
-            echo "goodbye!"
-            exit 1
+            choose_file
         fi
         server=$(echo $server | sed 's/#.*//')
         echo "Selected server: $server"
@@ -25,12 +25,20 @@ function choose_server() {
 }
 
 function choose_file() {
-    select file in ${files[@]}
+    clear
+    select file in ${files[@]} exit
     do  
+        allServer=()
+        if [ $file == "exit" ]
+        then
+            echo "goodbye!"
+            exit 1
+        fi
         while IFS= read -r line; do
             allServer+=("$line")
         done <$file
         choose_server
+        
     done
 }
 
