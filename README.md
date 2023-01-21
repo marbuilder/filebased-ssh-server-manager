@@ -16,3 +16,5 @@ or run the script with files direct from command line
 ```bash
 ./ssh-server.sh 'example.list /path/to/file.list'
 ```
+
+you can add a description to server with #, but do not use with spaces. Have a look in the example.list
