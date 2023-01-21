@@ -1,10 +1,12 @@
 PS3="Enter a number: "
 set -e
+
+sshUserName=$1
+sshArgs=""
+
 #files=(server.list example.list) # whitespace seperate list
 files+=()
-files+=($1)
-sshUserName=""
-sshArgs=""
+files+=($2)
 
 function choose_server() {
     clear
@@ -16,11 +18,10 @@ function choose_server() {
         fi
         server=$(echo $server | sed 's/#.*//')
         echo "Selected server: $server"
-
         ssh $sshUserName@$server $sshArgs
-        
 #        exit 1 # exit after last ssh-session
         choose_server
+
     done
 }
 
@@ -34,11 +35,11 @@ function choose_file() {
             echo "goodbye!"
             exit 1
         fi
-        while IFS= read -r line; do
+        while IFS= read -r line || [[ -n "$line" ]]
+        do
             allServer+=("$line")
         done <$file
         choose_server
-        
     done
 }
 
