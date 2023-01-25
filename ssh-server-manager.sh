@@ -2,12 +2,10 @@
 PS3="Enter a number: "
 set -e
 
-sshUserName=$1
+sshUserName=""
 sshArgs=""
 
-#files=(server.list example.list) # whitespace seperate list
-files+=()
-files+=($2)
+files=(server.list example.list) # whitespace seperate list
 
 function choose_server() {
     clear
