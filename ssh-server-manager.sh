@@ -18,7 +18,7 @@ function choose_server() {
         server=$(echo $server | sed 's/#.*//')
         echo "Selected server: $server"
         ssh $sshUserName@$server $sshArgs
-#        exit 1 # exit after last ssh-session
+#        exit 0 # exit after last ssh-session
         choose_server
 
     done
@@ -32,7 +32,7 @@ function choose_file() {
         if [ $file == "exit" ]
         then
             echo "goodbye!"
-            exit 1
+            exit 0
         fi
         while IFS= read -r line || [[ -n "$line" ]]
         do
